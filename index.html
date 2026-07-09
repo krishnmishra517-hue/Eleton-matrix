@@ -3,225 +3,463 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Eleton Theory | Official Portal</title>
+    <title>The Eleton Theory | Advanced Quantum Multiverse Research Consortium</title>
+    
+    <!-- MathJax for rendering ultra-complex equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es6/component/tex-mml-chtml.js"></script>
+    
     <style>
+        :root {
+            --bg-deep: #030308;
+            --panel-bg: #090919;
+            --panel-inner: #020207;
+            --neon-cyan: #00ffcc;
+            --neon-magenta: #ff007f;
+            --neon-blue: #0077ff;
+            --text-primary: #e5e5f5;
+            --text-secondary: #8b8ba9;
+            --border-glow: rgba(0, 255, 204, 0.15);
+        }
+
         body {
-            background-color: #05050a;
-            color: #e0e0ff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            line-height: 1.7;
         }
+
+        /* Hero Header Section */
         header {
-            background: linear-gradient(180deg, #0f0f2d 0%, transparent 100%);
-            padding: 40px 20px;
+            background: radial-gradient(circle at center, #0e0a2d 0%, #030308 100%);
+            padding: 60px 20px;
             text-align: center;
-            border-bottom: 1px solid #1f1f4e;
+            border-bottom: 3px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+            position: relative;
         }
-        h1 {
-            color: #00ffff;
-            font-size: 2.5rem;
+
+        header h1 {
+            color: var(--neon-cyan);
+            margin: 0 0 15px 0;
+            font-size: 2.8rem;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            margin: 0;
-            text-shadow: 0 0 15px rgba(0,255,255,0.5);
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
         }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #8a8aaf;
-            margin-top: 10px;
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin: 0 auto;
         }
-        .container {
-            max-width: 1000px;
+
+        .author-tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 15px;
+            background: linear-gradient(90deg, var(--neon-magenta), var(--neon-blue));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Layout Structure */
+        .wrapper {
+            max-width: 1100px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-        .theory-section {
-            background: rgba(15, 15, 45, 0.6);
-            border: 1px solid #2a2a6e;
-            border-radius: 12px;
-            padding: 25px;
+
+        /* Navigation Links (Internal Document Routing) */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+
+        .nav-item {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            text-align: center;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+
+        /* Main Sections */
+        .card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-glow);
+            padding: 35px;
+            margin-bottom: 35px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
         h2 {
-            color: #9d4edd;
-            border-bottom: 2px solid #3c166d;
-            padding-bottom: 10px;
+            color: var(--neon-magenta);
+            font-size: 1.8rem;
             margin-top: 0;
+            border-bottom: 2px solid rgba(255, 0, 127, 0.2);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .simulator-box {
-            background: #000;
-            border: 2px solid #00ffff;
+
+        h3 {
+            color: var(--neon-cyan);
+            font-size: 1.3rem;
+            margin-top: 25px;
+        }
+
+        p, li {
+            color: #d1d1eb;
+        }
+
+        /* Mathematics Block Styling */
+        .formula-container {
+            background: var(--panel-inner);
+            border-left: 5px solid var(--neon-cyan);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .formula-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            border-top: 1px dashed rgba(255,255,255,0.05);
+            padding-top: 8px;
+        }
+
+        /* Advanced Lab / Simulator Styling */
+        .lab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .lab-grid { grid-template-columns: 1fr; }
+        }
+
+        .control-panel {
+            background: var(--panel-inner);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .control-group input, .control-group select {
+            width: 100%;
+            padding: 10px;
+            background: #050510;
+            border: 1px solid #1a1a3a;
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .terminal-panel {
+            background: #010103;
+            border: 1px solid var(--neon-blue);
             border-radius: 8px;
             padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0,255,255,0.2);
+            font-family: 'Courier New', Courier, monospace;
+            color: #33ff33;
+            position: relative;
+            min-height: 200px;
+            max-height: 350px;
+            overflow-y: auto;
         }
-        #matrixCanvas {
-            background: #020205;
-            border: 1px solid #111;
-            display: block;
-            margin: 20px auto;
-            border-radius: 50%;
+
+        .terminal-header {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: var(--neon-blue);
         }
-        .control-panel {
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--neon-magenta), #b30059);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.5);
+        }
+
+        /* Custom Information Lists */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 20px 0;
         }
-        .slider-label {
-            font-size: 1.1rem;
-            color: #00ffff;
-            margin-right: 15px;
-            display: block;
-            margin-bottom: 10px;
+
+        .info-table th, .info-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        input[type=range] {
-            width: 80%;
-            accent-color: #9d4edd;
+
+        .info-table th {
+            color: var(--neon-cyan);
+            background: rgba(0, 255, 204, 0.05);
         }
-        .status-badge {
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .low { background: #5c1d1d; color: #ff8888; }
-        .medium { background: #5c431d; color: #ffcc88; }
-        .high { background: #1d5c2d; color: #88ff88; text-shadow: 0 0 10px #00ff00; }
+
         footer {
             text-align: center;
             padding: 40px;
-            color: #555577;
-            font-size: 0.9rem;
-            border-top: 1px solid #111;
+            background: #020205;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid #111122;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>THE ELETON THEORY</h1>
-        <div class="subtitle">Decoding Black Hole Internal Geometry via 500-Step Precision</div>
-        <p style="color: #ffb703; font-weight: bold; margin-top: 15px;">Founder & Chief Theorist: Krishna Mishra</p>
+        <h1>The Eleton Theory of Universal Mechanics</h1>
+        <p>A Comprehensive Exposition on Trans-Planckian $\pi$-Precision Fields, Noveole Singularity Nucleation, and the Nested Hyperspace Matrix Architecture.</p>
+        <div class="author-tag">Lead Researcher: Krishna Mishra</div>
     </header>
 
-    <div class="container">
-        <div class="theory-section">
-            <h2>1. The Eleton Hypothesis (Core Concept)</h2>
-            <p>Jab normal matter (electrons aur protons) kisi Black Hole ke andar girte hain, toh unki alag pehchan khatam ho jaati hai. Woh saare particles compressed hokar ek single macro-quantum degenerate object banate hain, jise humne <strong>"Eleton Core"</strong> ka naam diya hai. Yeh core pure energy aur data ka ek perfect matrix hota hai.</p>
+    <div class="wrapper">
+
+        <!-- Internal Routing Document Index -->
+        <div class="nav-grid">
+            <a href="#abstract" class="nav-item">1. Abstract Overview</a>
+            <a href="#hypotheses" class="nav-item">2. Philosophical Core</a>
+            <a href="#math-tensor" class="nav-item">3. Field Equations</a>
+            <a href="#quantum-matrix" class="nav-item">4. Tensor Expansion</a>
+            <a href="#simulation-lab" class="nav-item">5. Interactive Laboratory</a>
+            <a href="#experimental" class="nav-item">6. Validation Matrix</a>
         </div>
 
-        <div class="theory-section">
-            <h2>2. Interactive Matrix Simulator</h2>
-            <p>Niche diye gaye controller se Pi (&pi;) ki mathematical sateekta (precision) ko badha kar dekhiye ki kaise black hole ke andar ka chaos ek perfect crystal matrix mein badal jata hai.</p>
+        <!-- SECTION 1: COMPREHENSIVE ABSTRACT -->
+        <section id="abstract" class="card">
+            <h2>🌌 1. Complete Scientific Abstract & Foundation</h2>
+            <p>Eleton Theory astrophysics aur quantum computing ka ek sanyukt roop hai. Classical General Relativity ke mutabiq, jab koi sitara ya mass collapsing point par aata hai, toh ek infinite point of density banata hai jise **Singularity** kehte hain. Par modern physics is infinite coordinate ko mathematically process nahi kar sakti.</p>
+            <p>Eleton Mechanics ka prastav hai ki **Planck Scale ($1.6 \times 10^{-35}\text{m}$)** ke niche pahunchte hi, space-time ka nature continuous se hatkar granular ho jata hai. Is scale par information leak hone ke bajaye ek nayi configuration mein arrange ho jaati hai jise humne **Noveole Singularity** ka naam diya hai. Yeh singularity ek universal doorway ya terminal hai jo poore cosmic scale data ko ek sub-dimensional framework mein dynamic tarike se chalati hai.</p>
+        </section>
+
+        <!-- SECTION 2: THE FOUR CORE HYPOTHESES -->
+        <section id="hypotheses" class="card">
+            <h2>🔬 2. The Four Pillars of Eleton Hypotheses</h2>
+            <p>Is advanced structural system ko samajhne ke liye humne ise chaar mukhya bhagon mein divide kiya hai:</p>
             
-            <div class="simulator-box">
-                <div class="control-panel">
-                    <span class="slider-label">Mathematical Precision: <span id="stepVal">37</span> Steps</span>
-                    <input type="range" id="precisionSlider" min="37" max="250" value="37" step="1">
-                </div>
-                
-                <canvas id="matrixCanvas" width="280" height="280"></canvas>
-                
-                <div id="status" class="status-badge low">Simulation Stability: Low (Glitches Detected)</div>
-                <p id="telemetry" style="color: #8a8aaf; font-family: monospace; margin-top: 15px; font-size: 0.9rem;"></p>
-            </div>
-        </div>
+            <h3>A. Fractal Matrix Nucleation</h3>
+            <p>Brahmand ka structural distribution finite nahi hai. Har cosmic entity deep black hole event horizon ke madhyam se ek fractal geometry ki tarah self-repeating matrix banati hai. Iska arth hai ki hamara apna observable cosmic dome kisi massive space ka internal black hole architecture hai.</p>
 
-        <div class="theory-section">
-            <h2>3. The Nested Multiverse</h2>
-            <p>500 steps ki sateekta par yeh saaf dikhta hai ki Eleton Core ke andar ka space baahar se bada hota hai (Tardis Effect). Jab yeh core limit se zyada compress hota hai, toh isme ek 'Quantum Bounce' hota hai, jo is black hole ke andar ek <strong>Naye Universe (Big Bang)</strong> ko janam deta hai!</p>
-        </div>
+            <h3>B. Trans-Planckian Field Intercept</h3>
+            <p>Planck scale ke block par ordinary geometry fail ho jati hai aur pure values badal jati hain. Eleton Field ka mukhya element hai $\pi$-precision factor, jo static ($\approx 3.14159$) na rehkar field stress ke hisab se dynamically infinite layers tak scale hota hai.</p>
+
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Cosmic Scale Metric</th>
+                        <th>Standard Value</th>
+                        <th>Eleton Trans-Planckian Shift</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Planck Length ($\lambda_P$)</td>
+                        <td>$1.616 \times 10^{-35} \text{ m}$</td>
+                        <td>Variable Variable Continuum ($\lambda_E$)</td>
+                    </tr>
+                    <tr>
+                        <td>Pi Constant Variance ($\pi$)</td>
+                        <td>$3.14159265...$</td>
+                        <td>Dynamic Factor $\pi_{\infty}$ based on local Gravitational Stress</td>
+                    </tr>
+                    <tr>
+                        <td>Singularity Energy State</td>
+                        <td>Infinite Breakpoint</td>
+                        <td>Sealed Matrix Configuration ($\mathbf{M}$)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 3: MATHEMATICAL TENSOR EQUATIONS -->
+        <section id="math-tensor" class="card">
+            <h2>📐 3. Advanced Mathematical Space-Time Tensors</h2>
+            <p>Eleton fields ko space-time configuration par represent karne ke liye standard Einstein's field equation ko rewrite kiya gaya hai:</p>
+
+            <div class="formula-container">
+                <h3>Equation 3.1: Modified Eleton Field Metric Tensor</h3>
+                $$ds^2 = -\left(1 - \frac{2GM}{r \cdot \pi_{\infty}}\right) dt^2 + \left(1 - \frac{2GM}{r \cdot \pi_{\infty}}\right)^{-1} dr^2 + r^2 (d\theta^2 + \sin^2\theta d\phi^2)$$
+                <div class="formula-desc">
+                    <strong>Parameter Definitions:</strong> $G$ is Newton's Gravitational Constant, $M$ represent cosmic body mass, $r$ represents vector point radius, and $\pi_{\infty}$ represents the trans-Planckian limit variable scaling.
+                </div>
+            </div>
+
+            <div class="formula-container">
+                <h3>Equation 3.2: Hyper-Spatial Stress-Energy Balance</h3>
+                $$T_{\mu\nu}^{\text{Eleton}} = \Lambda_E \cdot g_{\mu\nu} + \left( \frac{\hbar \cdot c}{\lambda_P^4} \right) \cdot \mathbf{M}_{\mu\nu}$$
+                <div class="formula-desc">
+                    Yeh tensor equation yeh batati hai ki energy kahan se compress hokar virtual matrix coordinate ($\mathbf{M}$) mein shift hoti hai jab system event horizon ko cross karta hai.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: QUANTUM WAVE FUNCTION DENSITY -->
+        <section id="quantum-matrix" class="card">
+            <h2>⚛️ 4. Quantum Wave Function Density Analysis</h2>
+            <p>Noveole Singularity ke andar quantum packets kis matrix coordinate density par scatter honge, uske mathematical probability distribution functions niche diye gaye hain:</p>
+
+            <div class="formula-container">
+                <h3>Equation 4.1: The Probability Distribution Formula</h3>
+                $$\Psi_{E}(r, \theta, \phi) = \sum_{n=1}^{\infty} \left[ \frac{\kappa}{n^2 \cdot \pi_{\infty}} \cdot \exp\left(-\frac{r \cdot \gamma}{\lambda_P}\right) \right] \otimes \mathbf{M}_{\text{quantum}}(\alpha, \beta)$$
+                <div class="formula-desc">
+                    Yahan $\kappa$ initialization scaling coefficient hai aur $\mathbf{M}_{\text{quantum}}$ computational quantum matrix tensor array ko denote karta hai.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: INTERACTIVE MULTI-INPUT COMPUTATIONAL SIMULATOR LAB -->
+        <section id="simulation-lab" class="card">
+            <h2>💻 5. Multi-Variable Advanced Laboratory</h2>
+            <p>Eleton Theory equations ka actual structural evaluation dekhne ke liye is simulator system ko run karein. Aap parameters ko customize karke values analyze kar sakte hain:</p>
+
+            <div class="lab-grid">
+                <!-- Control Panel Side -->
+                <div class="control-panel">
+                    <div class="control-group">
+                        <label>1. Singularity Core Mass ($M_{\odot}$)</label>
+                        <input type="number" id="massParam" value="4.3" step="0.1" min="1">
+                    </div>
+                    <div class="control-group">
+                        <label>2. Pi-Precision Factor ($\pi_x$ Scaling)</label>
+                        <select id="piSelect">
+                            <option value="5">Level 5 (Planck-Edge Continuum)</option>
+                            <option value="10" selected>Level 10 (Deep Noveole Configuration)</option>
+                            <option value="15">Level 15 (Ultra-Dense Hyper-Core)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>3. Dimensional Lattice Frequency (GHz)</label>
+                        <input type="range" id="freqParam" min="100" max="999" value="485" style="padding:0;">
+                        <span id="freqVal" style="font-size:0.8rem; color:var(--text-secondary);">485 GHz</span>
+                    </div>
+                    
+                    <button class="action-btn" onclick="executeAdvancedLab()">Compute Field Matrix</button>
+                </div>
+
+                <!-- Live Terminal Side -->
+                <div class="terminal-panel" id="labTerminal">
+                    <div class="terminal-header">CORE_SIM_v2.6_LIVE</div>
+                    <span style="color:#666;">// System idling. Configure input parameters and click button to initiate calculation tensor grid...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: ROADMAP & FUTURE SCOPE -->
+        <section id="experimental" class="card">
+            <h2>🚀 6. Future Verification, Testing Protocols & Roadmap</h2>
+            <p>Eleton Framework ko global observational astrophysical communities ke sahare verify karne ke liye hum teen primary channels par research badha rahe hain:</p>
+            <ol>
+                <li><strong>Cosmic Anisotropy Analysis:</strong> Event Horizon Telescope (EHT) aur James Webb Space Telescope (JWST) ke micro-background scanning data mein anomalies ko match karna.</li>
+                <li><strong>Gravitational Wave Echo Mapping:</strong> Laser Interferometer Gravitational-Wave Observatory (LIGO) ke transients signals ke zariye sub-singularity density layers ke reverberations ko filter karna.</li>
+                <li><strong>Supercomputing Quantum Simulation:</strong> Multi-qubit platforms par sub-Planckian matrices ke mathematical calculations model karna.</li>
+            </ol>
+        </section>
+
     </div>
 
     <footer>
-        &copy; 2026 Eleton Theory Research Group. All Rights Reserved.
+        <p>&copy; 2026 Eleton Theory Advanced Research Consortium | Institutional Repository Lead: Krishna Mishra</p>
+        <p style="font-size: 0.75rem; color: #33334d; margin-top: 10px;">Document Reference ID: ET-QM-2026-NEXUS. All formulas rendered using secure MathJax LaTeX packages.</p>
     </footer>
 
+    <!-- Interactive Laboratory Calculations Scripts -->
     <script>
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-        const slider = document.getElementById('precisionSlider');
-        const stepVal = document.getElementById('stepVal');
-        const statusBadge = document.getElementById('status');
-        const telemetry = document.getElementById('telemetry');
+        // Update frequency indicator dynamically when using input range slider
+        document.getElementById('freqParam').addEventListener('input', function(e) {
+            document.getElementById('freqVal').innerText = e.target.value + " GHz";
+        });
 
-        let particles = [];
-        const numParticles = 150;
+        function executeAdvancedLab() {
+            const terminal = document.getElementById('labTerminal');
+            const mass = document.getElementById('massParam').value;
+            const piLevel = document.getElementById('piSelect').value;
+            const frequency = document.getElementById('freqParam').value;
 
-        for(let i=0; i<numParticles; i++) {
-            particles.push({
-                angle: Math.random() * Math.PI * 2,
-                radius: Math.random() * 110,
-                speed: 0.01 + Math.random() * 0.02
-            });
+            terminal.innerHTML = "<span style='color:#ffff00;'>[LAUNCH] Initiating Tensor Matrix Mapping...</span><br>";
+            
+            setTimeout(() => {
+                terminal.innerHTML += "[PROCESSING] Scaling local $\\pi_{\\infty}$ to factor degree Level " + piLevel + "...<br>";
+            }, 300);
+
+            setTimeout(() => {
+                terminal.innerHTML += "[PROCESSING] Evaluating Modified Schwarzschild Metric at " + mass + " Solar Masses...<br>";
+            }, 600);
+
+            setTimeout(() => {
+                // Calculation algorithms based on user metrics
+                let calculatedTensorDensity = (parseFloat(mass) * parseFloat(piLevel) * (frequency / 200) * 1.4142).toFixed(6);
+                let collapseBarrierPct = (99.9999 - (1 / (piLevel * mass))).toFixed(4);
+                let subUniverseCapacity = Math.floor(mass * piLevel * 14.72);
+
+                terminal.innerHTML += `<span style='color:var(--neon-cyan); font-weight:bold;'>[SUCCESS] CRITICAL DATA COMPLETED:</span><br>` +
+                                      `--------------------------------------<br>` +
+                                      `• Structural Tensor Density: ${calculatedTensorDensity} $\\text{E}_d/\\lambda_P^3$<br>` +
+                                      `• Singularity Collapse Protection: ${collapseBarrierPct}% Secure<br>` +
+                                      `• Estimated Nested Multiverse Nodes: ${subUniverseCapacity} Quadrillion<br>` +
+                                      `• Local Space-Time Status: Stable Core Matrix Equilibrium.`;
+                
+                // Scroll down automatically inside the terminal box
+                terminal.scrollTop = terminal.scrollHeight;
+            }, 1000);
         }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const val = parseInt(slider.value);
-            stepVal.innerText = val;
-
-            let noiseAmt = 0;
-            if (val < 100) {
-                noiseAmt = (100 - val) * 0.3;
-                statusBadge.innerText = "Simulation Stability: Low (Glitches Detected)";
-                statusBadge.className = "status-badge low";
-                telemetry.innerText = `Rounding Error: High | Pi Accuracy: ~38 Digits`;
-            } else if (val >= 100 && val < 200) {
-                noiseAmt = (200 - val) * 0.04;
-                statusBadge.innerText = "Simulation Stability: Medium (Quantum Balance Matched)";
-                statusBadge.className = "status-badge medium";
-                telemetry.innerText = `Rounding Error: Stable | Pi Accuracy: ~120 Digits`;
-            } else {
-                noiseAmt = 0;
-                statusBadge.innerText = "Stability: 100% Absolute (Planck Grid Locked)";
-                statusBadge.className = "status-badge high";
-                telemetry.innerText = "Rounding Error: 0.0000e-300 | Matrix Map: Crystal Clear";
-            }
-
-            ctx.beginPath();
-            ctx.arc(140, 140, 5, 0, Math.PI*2);
-            ctx.fillStyle = noiseAmt > 0 ? '#ff00ff' : '#00ffff';
-            ctx.fill();
-
-            particles.forEach(p => {
-                p.angle += p.speed;
-                let displayX = 140 + Math.cos(p.angle) * p.radius;
-                let displayY = 140 + Math.sin(p.angle) * p.radius;
-
-                if(noiseAmt > 0) {
-                    displayX += (Math.random() - 0.5) * noiseAmt * 8;
-                    displayY += (Math.random() - 0.5) * noiseAmt * 8;
-                    ctx.fillStyle = 'rgba(157, 78, 221, 0.7)';
-                    ctx.fillRect(displayX, displayY, 3, 3);
-                } else {
-                    let snappedRadius = Math.round(p.radius / 20) * 20;
-                    if(snappedRadius == 0) snappedRadius = 20;
-                    displayX = 140 + Math.cos(p.angle) * snappedRadius;
-                    displayY = 140 + Math.sin(p.angle) * snappedRadius;
-                    ctx.fillStyle = '#00ffff';
-                    ctx.beginPath();
-                    ctx.arc(displayX, displayY, 2, 0, Math.PI*2);
-                    ctx.fill();
-                }
-            });
-
-            if(val >= 200) {
-                ctx.strokeStyle = 'rgba(0, 255, 255, 0.1)';
-                for(let r=20; r<=120; r+=20) {
-                    ctx.beginPath();
-                    ctx.arc(140, 140, r, 0, Math.PI*2);
-                    ctx.stroke();
-                }
-            }
-
-            requestAnimationFrame(draw);
-        }
-
-        slider.addEventListener('input', draw);
-        draw();
     </script>
+
 </body>
-  </html>
+                        </html>
